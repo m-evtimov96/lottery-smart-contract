@@ -11,7 +11,7 @@ contract Lottery {
     mapping (uint => address payable) private lotteryHistory;
 
     modifier onlyOwner() {
-        require(msg.sender == owner);
+        require(msg.sender == owner, "Sender not authorized.");
         _;
     }
 
@@ -24,7 +24,7 @@ contract Lottery {
         return lotteryHistory[lottery];
     }
 
-    function getBalance() public view returns (uint) {
+    function getBalance() public onlyOwner view returns (uint) {
         return address(this).balance;
     }
 
