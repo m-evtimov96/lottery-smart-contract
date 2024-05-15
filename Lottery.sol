@@ -28,8 +28,12 @@ contract Lottery {
         return address(this).balance;
     }
 
-    function getPlayers() public view returns (address payable[] memory) {
+    function getPlayers() public onlyOwner view returns (address payable[] memory) {
         return players;
+    }
+
+    function getNumPlayers() public view returns (uint count) {
+        return players.length;
     }
 
     function enter() public payable {
